@@ -167,7 +167,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += libbthost_if
 
 # Include vendor SEPolicy changes
-include vendor/pa/sepolicy/sepolicy.mk
+#include vendor/pa/sepolicy/sepolicy.mk
 
 # Include proprietary header flags if vendor/head exists
 -include vendor/head/head-capabilities.mk

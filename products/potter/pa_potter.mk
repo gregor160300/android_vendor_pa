@@ -16,6 +16,7 @@
 ifeq (pa_potter,$(TARGET_PRODUCT))
 
 # Inherit from those products. Most specific first.
+$(call inherit-product, device/motorola/potter/core_32_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 TARGET_BOOT_ANIMATION_RES := 1080
@@ -23,7 +24,7 @@ TARGET_BOOT_ANIMATION_RES := 1080
 include device/qcom/common/common.mk
 
 # Inherit AOSP device configuration
-$(call inherit-product, device/motorola/potter/full_potter.mk)
+$(call inherit-product, device/motorola/potter/device.mk)
 
 # Override AOSP build properties
 PRODUCT_NAME := pa_potter
@@ -32,6 +33,13 @@ PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.usb.config=mtp,adb \
+    persist.sys.usb.config=mtp,adb \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.debuggable=1
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT=motorola/potter/potter:7.0/NPNS25.137-33-11/11:user/release-keys \
